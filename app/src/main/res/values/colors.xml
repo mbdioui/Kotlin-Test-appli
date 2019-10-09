@@ -1,0 +1,23 @@
+<!--?xml version="1.0" encoding="UTF-8"?-->
+<resources>
+    <color name="primaryColor">#ae17ff</color>
+    <color name="primaryLightColor">#e55bff</color>
+    <color name="primaryDarkColor">#7700cb</color>
+    <color name="secondaryColor">#CBE0B7F8</color>
+    <color name="secondaryLightColor">#ffd9ff</color>
+    <color name="secondaryDarkColor">#af77cc</color>
+    <color name="primaryTextColor">#ffffff</color>
+    <color name="secondaryTextColor">#000000</color>
+    //colors night mode
+    <color name="darkNightColor">#29434e</color>
+    <color name="primaryNightcolor">#e1e2e1</color>
+    <color name="secondNightcolor">#424f7b</color>
+    <color name="backgroundNightColor">#647999</color>
+    <color name="cardviewColor">#FA91A2B9</color>
+    <color name="dialogfragmentcolor">#546e7a</color>
+    <color name="secondNightColor">#81837e</color>
+    <color name="accentNightColor">#ccc4d6</color>
+    <color name="textButtonNightColor">#070707</color>
+    <color name="secondtextNightColor">#ffffff</color>
+    <color name="toolbarbackgroundcolor">#546e7a</color>
+</resources>

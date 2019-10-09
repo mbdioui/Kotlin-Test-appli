@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/backgroundcolor"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_activity_layout" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/first_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="30dp"
+            app:cardBackgroundColor="?attr/cardbackground"
+            app:cardCornerRadius="5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="20dp"
+                android:orientation="vertical">
+
+                <Switch
+                    android:id="@+id/switch1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:checked="true"
+                    android:enabled="true"
+                    android:text="Switch"
+                    android:textAppearance="@style/bodyCardView"
+                    android:textColor="?attr/cardviewtextcolor" />
+
+                <Button
+                    android:id="@+id/button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="?attr/buttoncolor"
+                    android:shadowRadius="@android:integer/config_longAnimTime"
+                    android:text="Button"
+                    android:textAppearance="@style/bodyCardView"
+                    android:textColor="?attr/cardviewtextcolor" />
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="test11"
+                    android:textAppearance="@style/bodyCardView"
+                    android:textColor="?attr/cardviewtextcolor" />
+
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="test11"
+                    android:textAppearance="@style/bodyCardView"
+                    android:textColor="?attr/cardviewtextcolor" />
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="test11"
+                    android:textAppearance="@style/bodyCardView"
+                    android:textColor="?attr/cardviewtextcolor" />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/first_card"
+            android:layout_marginTop="10dp"
+            android:padding="30dp"
+            app:cardBackgroundColor="?attr/cardbackground"
+            app:cardCornerRadius="5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:padding="30dp">
+
+                <Switch
+                    android:id="@+id/switch_night_mode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="left"
+                    android:textAppearance="@style/bodyCardView"
+                    android:textColor="?attr/cardviewtextcolor" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="7dp"
+                    android:layout_weight="8"
+                    android:gravity="right"
+                    android:text="Do you want to switch to Night Mode"
+                    android:textAppearance="@style/bodyCardView"
+                    android:textColor="?attr/cardviewtextcolor" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="?attr/backgroundcolor"
+    tools:context=".activities.FirstActivity">
+
+    <include layout="@layout/common_activity_layout"/>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:textAppearance="@style/H1"
+        android:text="TestDialogFragment"
+        android:textColor="?attr/textcolor"
+        tools:layout_editor_absoluteX="93dp"
+        tools:layout_editor_absoluteY="298dp" />
+</RelativeLayout>
