@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="70dp">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:id="@+id/notecard"
+        android:layout_height="wrap_content"
+        android:background="?attr/cardbackground"
+        android:clickable="true"
+        android:focusable="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/title_note"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/H1"
+                tools:text="Title Note 1" />
+
+            <TextView
+                android:id="@+id/excerpt_note"
+                android:layout_width="wrap_content"
+                android:textAppearance="@style/corps1"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/title_note"
+                android:ellipsize="end"
+                android:maxLines="1"
+                tools:text="Hello world I Wrote this text just for tests purposes And I need to fill it, so I ask you to not give importance to the content" />
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

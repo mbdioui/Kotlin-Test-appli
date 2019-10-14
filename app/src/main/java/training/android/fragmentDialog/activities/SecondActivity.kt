@@ -7,7 +7,7 @@ import kotlinx.android.synthetic.main.common_activity_layout.*
 import kotlinx.android.synthetic.main.test_layout_file.*
 import training.android.fragmentDialog.R
 import training.android.fragmentDialog.adapter.CountryAdapter
-import training.android.fragmentDialog.interfaces.impl.RecycleViewCountryImpl
+import training.android.fragmentDialog.interfaces.impl.CountryRecycleViewCountryImpl
 
 class SecondActivity : CommonActivity() {
 	var switch: Switch? = null
@@ -241,6 +241,6 @@ class SecondActivity : CommonActivity() {
 
 		recycler_view.layoutManager = LinearLayoutManager(this)
 		recycler_view.adapter = adapter
-		adapter.countryItemListener = RecycleViewCountryImpl(this)
+		adapter.countryItemListenerCountry = CountryRecycleViewCountryImpl(this)
 	}
 }

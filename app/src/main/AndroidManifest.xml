@@ -9,18 +9,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppThemeLight">
-        <activity android:name=".activities.FirstActivity" android:parentActivityName=".activities.CommonActivity">
+        <activity
+            android:name=".activities.FirstActivity"
+            android:parentActivityName=".activities.CommonActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.SecondActivity" android:parentActivityName=".activities.CommonActivity">
+        <activity android:name=".activities.NoteListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.CommonActivity"/>
+        <activity
+            android:name=".activities.SecondActivity"
+            android:parentActivityName=".activities.CommonActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activities.CommonActivity" />
+        <activity android:name=".activities.NoteDetailActivity" />
     </application>
 
 </manifest>

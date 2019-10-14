@@ -1,5 +1,6 @@
 package training.android.fragmentDialog.activities
 
+import android.content.Intent
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.common_activity_layout.*
@@ -14,6 +15,12 @@ class FirstActivity : CommonActivity() {
 		setContentView(R.layout.activity_main)
 		setSupportActionBar(default_toolbar)
 		textView.setOnClickListener { showdialog() }
+		btn_view_notes.setOnClickListener { showNotes() }
+	}
+
+	private fun showNotes() {
+		val intent: Intent = Intent(this, NoteListActivity::class.java)
+		startActivity(intent)
 	}
 
 	override fun onRestart() {

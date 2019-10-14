@@ -3,9 +3,9 @@ package training.android.fragmentDialog.interfaces.impl
 import android.content.Context
 import android.view.View
 import android.widget.Toast
-import training.android.fragmentDialog.interfaces.RecycleViewListener
+import training.android.fragmentDialog.interfaces.CountryRecycleViewListener
 
-class RecycleViewCountryImpl(val context: Context) : RecycleViewListener {
+class CountryRecycleViewCountryImpl(val context: Context) : CountryRecycleViewListener {
 	override fun onCardViewClick(view: View) {
 		Toast.makeText(
 			context,

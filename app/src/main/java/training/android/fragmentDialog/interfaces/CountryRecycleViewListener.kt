@@ -2,7 +2,7 @@ package training.android.fragmentDialog.interfaces
 
 import android.view.View
 
-interface RecycleViewListener {
+interface CountryRecycleViewListener {
 	fun onCardViewClick(view: View)
 	fun onIconClick(view: View)
 	fun onLongClick(view: View)

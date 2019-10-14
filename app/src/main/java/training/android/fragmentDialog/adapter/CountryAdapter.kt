@@ -8,38 +8,38 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import training.android.fragmentDialog.R
-import training.android.fragmentDialog.interfaces.RecycleViewListener
+import training.android.fragmentDialog.interfaces.CountryRecycleViewListener
 
 class CountryAdapter(val countries: Array<String>) :
-	RecyclerView.Adapter<CountryAdapter.ViewHolder>() {
+	RecyclerView.Adapter<CountryAdapter.CountryHolder>() {
 
-	var countryItemListener: RecycleViewListener? = null
+	var countryItemListenerCountry: CountryRecycleViewListener? = null
 
-	class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+	class CountryHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 		val icon = itemView.findViewById(R.id.icon) as ImageView
 		val name = itemView.findViewById(R.id.country_name) as TextView
-		val cardview = itemView.findViewById(R.id.cardview) as CardView
+		val cardview = itemView.findViewById(R.id.countrycard) as CardView
 	}
 
-	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CountryHolder {
 		val inflater = LayoutInflater.from(parent.context)
 		val view = inflater.inflate(R.layout.country_item, parent, false)
-		return ViewHolder(view)
+		return CountryHolder(view)
 	}
 
 	override fun getItemCount(): Int {
 		return countries.size
 	}
 
-	override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+	override fun onBindViewHolder(holder: CountryHolder, position: Int) {
 		holder.icon.setImageResource(R.drawable.ic_launcher_foreground)
 		holder.name.setText(countries[position])
 		holder.cardview.tag = position
-		holder.cardview.setOnClickListener { view -> countryItemListener?.onCardViewClick(view) }
-		holder.icon.setOnClickListener { view -> countryItemListener?.onIconClick(view) }
-		holder.name.setOnClickListener { view -> countryItemListener?.onTextClick(view) }
+		holder.cardview.setOnClickListener { view -> countryItemListenerCountry?.onCardViewClick(view) }
+		holder.icon.setOnClickListener { view -> countryItemListenerCountry?.onIconClick(view) }
+		holder.name.setOnClickListener { view -> countryItemListenerCountry?.onTextClick(view) }
 		holder.cardview.setOnLongClickListener { view ->
-			countryItemListener?.onLongClick(view)
+			countryItemListenerCountry?.onLongClick(view)
 			true
 		}
 	}
