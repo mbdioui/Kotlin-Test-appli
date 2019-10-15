@@ -17,7 +17,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.NoteListActivity">
+        <activity
+            android:name=".activities.NoteListActivity"
+            android:parentActivityName=".activities.FirstActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
@@ -29,8 +31,14 @@
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.CommonActivity" />
-        <activity android:name=".activities.NoteDetailActivity" />
+        <activity
+            android:name=".activities.NoteDetailActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:parentActivityName=".activities.NoteListActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.NoteListActivity" />
+        </activity>
     </application>
 
 </manifest>

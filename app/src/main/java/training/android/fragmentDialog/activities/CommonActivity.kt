@@ -6,6 +6,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.NavUtils
 import training.android.fragmentDialog.R
 import training.android.fragmentDialog.Settings
 
@@ -42,8 +43,10 @@ open class CommonActivity : AppCompatActivity() {
 				Toast.makeText(this, "yessss item's deleted", Toast.LENGTH_SHORT)
 					.show()
 			}
+
+			android.R.id.home ->
+				NavUtils.navigateUpFromSameTask(this)
 		}
 		return true
 	}
-
 }
