@@ -34,12 +34,12 @@ open class CommonActivity : AppCompatActivity() {
 	override fun onOptionsItemSelected(item: MenuItem): Boolean {
 		when (item.itemId) {
 			R.id.action_send -> {
-				Toast.makeText(this, "yessss secondActivityIntent's sended", Toast.LENGTH_SHORT)
+				Toast.makeText(this, "yessss item's sended", Toast.LENGTH_SHORT)
 					.show()
 			}
 
 			R.id.action_delete -> {
-				Toast.makeText(this, "yessss secondActivityIntent's deleted", Toast.LENGTH_SHORT)
+				Toast.makeText(this, "yessss item's deleted", Toast.LENGTH_SHORT)
 					.show()
 			}
 		}
