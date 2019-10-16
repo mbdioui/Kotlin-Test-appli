@@ -1,6 +1,5 @@
 package training.android.fragmentDialog.interfaces.impl
 
-import android.app.Activity
 import android.content.Intent
 import android.view.View
 import android.widget.Toast
@@ -16,15 +15,15 @@ class NoteClickListenerImpl(
 	override fun onClick(v: View?) {
 		if (v!!.tag != null) {
 			Toast.makeText(activity, "element clicked is ${v.tag}", Toast.LENGTH_SHORT).show()
-			lunchDetailNote(v)
+			lunchDetailNote(v.tag as Int)
 		}
 
 	}
 
-	private fun lunchDetailNote(v: View) {
+	private fun lunchDetailNote(index: Int) {
 		val detail_note_intent = Intent(activity, NoteDetailActivity::class.java)
-		detail_note_intent.putExtra(NoteDetailActivity.EXTRA_NOTE, notes[v.tag as Int])
-		detail_note_intent.putExtra(NoteDetailActivity.EXTRA_NOTE_INDEX, v.tag as Int)
+		detail_note_intent.putExtra(NoteDetailActivity.EXTRA_NOTE, notes[index])
+		detail_note_intent.putExtra(NoteDetailActivity.EXTRA_NOTE_INDEX, index)
 		activity.startActivityForResult(detail_note_intent, NoteDetailActivity.EDIT_NOTE_REQUEST)
 	}
 

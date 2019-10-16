@@ -25,13 +25,13 @@ class NoteDetailActivity : CommonActivity() {
 		setContentView(R.layout.note_detail_layout)
 		setSupportActionBar(default_toolbar)
 		supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-		supportActionBar!!.setTitle("testing detail")
+		supportActionBar!!.setTitle("edition d'une note")
 		bindNoteInView()
 	}
 
 	private fun bindNoteInView() {
 		note = intent.getParcelableExtra("note")
-		noteIndex = intent.getIntExtra(NoteDetailActivity.EXTRA_NOTE_INDEX, -1)
+		noteIndex = intent.getIntExtra(EXTRA_NOTE_INDEX, -1)
 		title_detail.setText(note.title)
 		textnote_detail.setText(note.note_text)
 	}
