@@ -2,20 +2,20 @@ package training.android.fragmentDialog.model
 
 import android.os.Parcel
 import android.os.Parcelable
+import java.io.Serializable
 
 data class Note(
 	var title: String = "",
 	var note_text: String = "",
 	var filename: String = ""
-) : Parcelable {
+) : Parcelable,Serializable {
 
 
 	constructor(parcel: Parcel) : this(
 		parcel.readString()!!,
 		parcel.readString()!!,
 		parcel.readString()!!
-	) {
-	}
+	)
 
 	override fun writeToParcel(
 		parcel: Parcel,
@@ -31,6 +31,7 @@ data class Note(
 	}
 
 	companion object CREATOR : Parcelable.Creator<Note> {
+		private val UIID=234432442128
 		override fun createFromParcel(parcel: Parcel): Note {
 			return Note(parcel)
 		}

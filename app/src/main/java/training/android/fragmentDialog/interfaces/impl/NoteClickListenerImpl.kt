@@ -1,6 +1,7 @@
 package training.android.fragmentDialog.interfaces.impl
 
 import android.content.Intent
+import android.os.Parcelable
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -22,7 +23,7 @@ class NoteClickListenerImpl(
 
 	private fun lunchDetailNote(index: Int) {
 		val detail_note_intent = Intent(activity, NoteDetailActivity::class.java)
-		detail_note_intent.putExtra(NoteDetailActivity.EXTRA_NOTE, notes[index])
+		detail_note_intent.putExtra(NoteDetailActivity.EXTRA_NOTE, notes[index] as Parcelable)
 		detail_note_intent.putExtra(NoteDetailActivity.EXTRA_NOTE_INDEX, index)
 		activity.startActivityForResult(detail_note_intent, NoteDetailActivity.EDIT_NOTE_REQUEST)
 	}

@@ -3,6 +3,7 @@ package training.android.fragmentDialog.activities
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.os.Parcelable
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -11,6 +12,8 @@ import kotlinx.android.synthetic.main.note_list_layout.*
 import training.android.fragmentDialog.R
 import training.android.fragmentDialog.adapter.NoteAdapter
 import training.android.fragmentDialog.model.Note
+import training.android.fragmentDialog.utils.loadNotes
+import training.android.fragmentDialog.utils.persistNote
 
 class NoteListActivity : CommonActivity() {
 	lateinit var notes: MutableList<Note>
@@ -35,15 +38,15 @@ class NoteListActivity : CommonActivity() {
 	}
 
 	private fun showNote(index: Int) {
-		val detail_note_intent = Intent(this, NoteDetailActivity::class.java)
+		val detailNoteIntent = Intent(this, NoteDetailActivity::class.java)
 
-		detail_note_intent.putExtra(
+		detailNoteIntent.putExtra(
 			NoteDetailActivity.EXTRA_NOTE,
-			if (index >= 0) notes[index] else Note()
+			if (index >= 0) notes[index] as Parcelable else Note() as Parcelable
 		)
-		detail_note_intent.putExtra(NoteDetailActivity.EXTRA_NOTE_INDEX, index)
+		detailNoteIntent.putExtra(NoteDetailActivity.EXTRA_NOTE_INDEX, index)
 		startActivityForResult(
-			detail_note_intent,
+			detailNoteIntent,
 			NoteDetailActivity.EDIT_NOTE_REQUEST
 		)
 	}
@@ -56,38 +59,7 @@ class NoteListActivity : CommonActivity() {
 
 	private fun initListStaticValues() {
 		notes = mutableListOf()
-		notes.add(Note("Note1", "this is a pure exemple of obselete text"))
-		notes.add(Note("Note2", "Note about 2"))
-		notes.add(Note("Bob", "Nice player"))
-		notes.add(Note("salah mejri", "fierté tunisienne"))
-		notes.add(Note("Note2", "Note about 2"))
-		notes.add(Note("Note2", "Note about 2"))
-		notes.add(Note("Note2", "Note about 2"))
-		notes.add(Note("Note2", "Note about 2"))
-		notes.add(Note("Note2", "Note about 2"))
-		notes.add(Note("Note2", "Note about 2"))
-		notes.add(Note("Note2", "Note about 2"))
-		notes.add(Note("Note2", "Note about 2"))
-		notes.add(Note("Note2", "Note about 2"))
-		notes.add(Note("Note2", "Note about 2"))
-		notes.add(Note("Note2", "Note about 2"))
-		notes.add(Note("Note2", "Note about 2"))
-		notes.add(Note("Note2", "Note about 2"))
-		notes.add(Note("Note2", "Note about 2"))
-		notes.add(Note("Note2", "Note about 2"))
-		notes.add(Note("Note2", "Note about 2"))
-		notes.add(Note("Note2", "Note about 2"))
-		notes.add(Note("Note2", "Note about 2"))
-		notes.add(Note("Note2", "Note about 2"))
-		notes.add(Note("Note2", "Note about 2"))
-		notes.add(Note("Note2", "Note about 2"))
-		notes.add(Note("Note2", "Note about 2"))
-		notes.add(Note("Note2", "Note about 2"))
-		notes.add(Note("Note2", "Note about 2"))
-		notes.add(Note("Note2", "Note about 2"))
-		notes.add(Note("Note2", "Note about 2"))
-		notes.add(Note("Note2", "Note about 2"))
-		notes.add(Note("Note3", "Note about 3"))
+		notes = loadNotes(this)
 	}
 
 	override fun onActivityResult(
@@ -101,9 +73,26 @@ class NoteListActivity : CommonActivity() {
 		}
 		when (requestCode) {
 			NoteDetailActivity.EDIT_NOTE_REQUEST -> {
-				saveNote(data)
+				processNote(data)
 			}
 		}
+	}
+
+	private fun processNote(data: Intent) {
+		when (data.action) {
+			NoteDetailActivity.ACTION_SAVE_NOTE -> saveNote(data)
+			NoteDetailActivity.ACTION_DELETE_NOTE -> deleteNote(data)
+		}
+	}
+
+	private fun deleteNote(data: Intent) {
+		val index = data.getIntExtra(NoteDetailActivity.EXTRA_NOTE_INDEX, -1)
+		if (index >= 0) {
+			val note = notes.removeAt(index)
+			training.android.fragmentDialog.utils.deleteNote(this, note)
+			noteAdapter.notifyDataSetChanged()
+		}
+
 	}
 
 	private fun saveNote(data: Intent) {
@@ -113,6 +102,7 @@ class NoteListActivity : CommonActivity() {
 			notes[noteIndex] = note
 		else
 			notes.add(0, note)
+		persistNote(this, note)
 		noteAdapter.notifyDataSetChanged()
 	}
 }
