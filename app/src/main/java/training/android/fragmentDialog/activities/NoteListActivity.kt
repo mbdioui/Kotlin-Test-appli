@@ -7,6 +7,7 @@ import android.os.Parcelable
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.common_activity_layout.*
 import kotlinx.android.synthetic.main.note_list_layout.*
 import training.android.fragmentDialog.R
@@ -58,7 +59,6 @@ class NoteListActivity : CommonActivity() {
 	}
 
 	private fun initListStaticValues() {
-		notes = mutableListOf()
 		notes = loadNotes(this)
 	}
 
@@ -87,12 +87,18 @@ class NoteListActivity : CommonActivity() {
 
 	private fun deleteNote(data: Intent) {
 		val index = data.getIntExtra(NoteDetailActivity.EXTRA_NOTE_INDEX, -1)
+		var note: Note? = null
 		if (index >= 0) {
-			val note = notes.removeAt(index)
+			note = notes.removeAt(index)
 			training.android.fragmentDialog.utils.deleteNote(this, note)
 			noteAdapter.notifyDataSetChanged()
 		}
-
+		Snackbar.make(
+			coordinator_list_note,
+			"note \"${note!!.title}\" deleted from list",
+			Snackbar.LENGTH_SHORT
+		)
+			.show()
 	}
 
 	private fun saveNote(data: Intent) {

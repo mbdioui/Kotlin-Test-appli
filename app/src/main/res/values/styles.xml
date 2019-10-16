@@ -72,6 +72,7 @@
         <item name="android:fontFamily">casual</item>
         <item name="android:textStyle">bold</item>
     </style>
+
     <style name="corps1">
         <item name="android:textSize">20sp</item>
         <item name="android:fontFamily">casual</item>
@@ -88,9 +89,6 @@
     <style name="ToolbarTextAppearance">
         <item name="android:fontFamily">sans-serif-condensed</item>
         <item name="android:textColor">?attr/toolbarTextColor</item>
-        <!--<item name="android:shadowDx">1</item>
-        <item name="android:shadowDy">1</item>
-        <item name="android:shadowRadius">5</item>-->
         <item name="android:radius">5dp</item>
         <item name="android:shadowColor">?colorAccent</item>
     </style>
@@ -101,5 +99,10 @@
 
     <style name="ToolbarTextAppearance.Subtitle">
         <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="SnackbarTheme" parent="Theme.AppCompat.Light">
+        <item name="colorAccent">?attr/toolbarcolor</item>
+        <item name="android:textColor">?attr/textcolor</item>
     </style>
 </resources>
