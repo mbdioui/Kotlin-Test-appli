@@ -12,9 +12,10 @@ class Settings(context: Context) {
 	}
 
 	fun setNightMode(bool: Boolean) {
-		val editor: SharedPreferences.Editor = sharedPreference!!.edit()
-		editor.putBoolean("NightMode", bool)
-		editor.commit()
+		sharedPreference?.edit()?.let {
+			it.putBoolean("NightMode", bool)
+			it.commit()
+		}
 	}
 
 	fun getNightMode(): Boolean {
@@ -22,7 +23,10 @@ class Settings(context: Context) {
 	}
 
 	companion object Setter {
-		fun setAppTheme(activity: Activity, nightMode: Boolean) {
+		fun setAppTheme(
+			activity: Activity,
+			nightMode: Boolean
+		) {
 			if (nightMode)
 				activity.setTheme(R.style.AppThemeNight)
 			else

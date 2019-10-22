@@ -1,5 +1,6 @@
 package training.android.fragmentDialog.activities
 
+import android.content.Context
 import android.os.Bundle
 import android.widget.Switch
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,7 +13,7 @@ import training.android.fragmentDialog.interfaces.impl.CountryRecycleViewCountry
 class SecondActivity : CommonActivity() {
 	var switch: Switch? = null
 
-	var country_list = arrayOf<String>(
+	var country_list = arrayOf(
 		"Afghanistan",
 		"Albania",
 		"Algeria",
@@ -219,17 +220,18 @@ class SecondActivity : CommonActivity() {
 		"Zambia",
 		"Zimbabwe"
 	)
-	var adapter: CountryAdapter = CountryAdapter(country_list)
-
+	var secondActivityAdapter: CountryAdapter = CountryAdapter(country_list)
+	lateinit var mContext: Context
 	override fun onCreate(savedInstanceState: Bundle?) {
 
 		super.onCreate(savedInstanceState)
-		setContentView(R.layout.test_layout_file);
+		setContentView(R.layout.test_layout_file)
 		setSupportActionBar(default_toolbar)
+		mContext = this
 		switch = switch_night_mode
 		if (this.sharedpreference!!.getNightMode())
 			switch?.isChecked = true
-		switch?.setOnCheckedChangeListener { buttonView, isChecked ->
+		switch?.setOnCheckedChangeListener { _, isChecked ->
 			if (isChecked) {
 				sharedpreference!!.setNightMode(true)
 				restartActivity()
@@ -238,9 +240,10 @@ class SecondActivity : CommonActivity() {
 				restartActivity()
 			}
 		}
-
-		recycler_view.layoutManager = LinearLayoutManager(this)
-		recycler_view.adapter = adapter
-		adapter.countryItemListenerCountry = CountryRecycleViewCountryImpl(this)
+		secondActivityAdapter.countryItemListenerCountry = CountryRecycleViewCountryImpl(mContext)
+		recycler_view.apply {
+			layoutManager = LinearLayoutManager(mContext)
+			this.adapter = secondActivityAdapter
+		}
 	}
 }

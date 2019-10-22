@@ -12,15 +12,16 @@ class DialogListenerImpl(context: Context) :
 
 	val context = context
 	override fun negativeReponse() {
-		Toast.makeText(context, "not able to redirect you", Toast.LENGTH_SHORT).show()
+		Toast(context).showText(context, "not able to redirect you")
 	}
 
 	override fun positiveResponse() {
-		var secondActivityIntent: Intent = Intent(
+		Intent(
 			context,
 			SecondActivity::class.java
-		)
-		startActivity(context, secondActivityIntent, null)
+		).run {
+			startActivity(context, this, null)
+		}
 	}
 
 }

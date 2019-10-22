@@ -25,11 +25,11 @@ class ConfirmDialog : DialogFragment() {
 		builder
 			.setTitle("Please confirm your response")
 			.setMessage("Do you confirm that you did understantd the topic")
-			.setPositiveButton("confirm", DialogInterface.OnClickListener { dialog, id ->
+			.setPositiveButton("confirm", DialogInterface.OnClickListener { _, _ ->
 				Log.i(TAG, "confirm success")
 				confirmDialogListener?.positiveResponse()
 			})
-			.setNegativeButton("Decline", DialogInterface.OnClickListener { dialog, id ->
+			.setNegativeButton("Decline", DialogInterface.OnClickListener { _, _ ->
 				Log.i(TAG, "decline success")
 				confirmDialogListener?.negativeReponse()
 			})

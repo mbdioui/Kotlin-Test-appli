@@ -1,6 +1,7 @@
 package training.android.fragmentDialog.activities
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Parcelable
@@ -22,13 +23,15 @@ class NoteDetailActivity : CommonActivity() {
 			"training.android.fragmentDialog.activities.NoteDetailActivity.deleteNote"
 	}
 
-	lateinit var note: Note
+	lateinit var mContext: Context
+	var note: Note? = null
 	var noteIndex = -1
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.note_detail_layout)
 		setSupportActionBar(default_toolbar)
+		mContext = this
 		supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 		supportActionBar!!.setTitle("edition d'une note")
 		bindNoteInView()
@@ -37,8 +40,8 @@ class NoteDetailActivity : CommonActivity() {
 	private fun bindNoteInView() {
 		note = intent.getParcelableExtra(EXTRA_NOTE)
 		noteIndex = intent.getIntExtra(EXTRA_NOTE_INDEX, -1)
-		title_detail.setText(note.title)
-		textnote_detail.setText(note.note_text)
+		title_detail.setText(note?.title)
+		textnote_detail.setText(note?.note_text)
 	}
 
 	override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -63,20 +66,25 @@ class NoteDetailActivity : CommonActivity() {
 	}
 
 	private fun saveNote() {
-		val note = Note()
-		note.title = title_detail.text.toString()
-		note.note_text = textnote_detail.text.toString()
-		val parentIntent = Intent(ACTION_SAVE_NOTE)
-		parentIntent.putExtra(EXTRA_NOTE, note as Parcelable)
-		parentIntent.putExtra(EXTRA_NOTE_INDEX, noteIndex)
-		setResult(Activity.RESULT_OK, parentIntent)
+		val varNote = Note().apply {
+			title = title_detail.text.toString()
+			note_text = textnote_detail.text.toString()
+			filename = note?.filename ?: ""
+		}
+		Intent(ACTION_SAVE_NOTE).run {
+			putExtra(EXTRA_NOTE, varNote as Parcelable)
+			putExtra(EXTRA_NOTE_INDEX, noteIndex)
+			setResult(Activity.RESULT_OK, this)
+		}
 		finish()
 	}
 
 	private fun deleteNote() {
-		val parentIntent = Intent(ACTION_DELETE_NOTE)
-		parentIntent.putExtra(EXTRA_NOTE_INDEX, noteIndex)
-		setResult(Activity.RESULT_OK, parentIntent)
+		Intent(ACTION_DELETE_NOTE).run {
+			putExtra(EXTRA_NOTE_INDEX, noteIndex)
+			putExtra(EXTRA_NOTE, note as Parcelable)
+			setResult(Activity.RESULT_OK, this)
+		}
 		finish()
 	}
 }

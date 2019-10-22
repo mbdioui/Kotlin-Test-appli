@@ -1,5 +1,6 @@
 package training.android.fragmentDialog.interfaces.impl
 
+import android.app.Activity
 import android.app.FragmentManager
 import android.content.Context
 import android.widget.Toast
@@ -7,33 +8,34 @@ import training.android.fragmentDialog.fragments.ListDialog
 import training.android.fragmentDialog.interfaces.DialogFragmentInterface
 
 class ConfirmDialogImpl(
-	context: Context,
+	val context: Activity,
 	fragmentManager: FragmentManager
 ) : DialogFragmentInterface {
 
-	val context = context
-	val secondDialogFragment = ListDialog()
-	val fManger = fragmentManager
+	private val secondDialogFragment = ListDialog()
+	private val fManager = fragmentManager
+	private val mContext = context
 	override fun positiveResponse() {
 
-		Toast.makeText(
-			context,
-			"positif click dialog Firt DialogFragment",
-			Toast.LENGTH_SHORT
-		)
-			.show()
-		secondDialogFragment.show(fManger, "second secondDialogFragment")
-		secondDialogFragment.listDialogListener =
-			DialogListenerImpl(context)
+		Toast(mContext).showText(mContext, "Positive click dialog First DialogFragment")
+		secondDialogFragment.apply {
+			show(fManager, "Second secondDialogFragment")
+			listDialogListener =
+				DialogListenerImpl(mContext)
+		}
 	}
-
 
 	override fun negativeReponse() {
-		Toast.makeText(
-			context,
-			"negatif click dialog First DialogFragment",
-			Toast.LENGTH_SHORT
-		)
-			.show()
+		Toast(mContext)
+			.showText(mContext, "Negative click dialog First DialogFragment")
 	}
+
+}
+
+fun Toast.showText(
+	context: Context,
+	text: String = "",
+	duration: Int = Toast.LENGTH_SHORT
+) {
+	Toast.makeText(context, text, duration).show()
 }

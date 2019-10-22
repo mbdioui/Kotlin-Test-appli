@@ -22,10 +22,11 @@ class NoteClickListenerImpl(
 	}
 
 	private fun lunchDetailNote(index: Int) {
-		val detail_note_intent = Intent(activity, NoteDetailActivity::class.java)
-		detail_note_intent.putExtra(NoteDetailActivity.EXTRA_NOTE, notes[index] as Parcelable)
-		detail_note_intent.putExtra(NoteDetailActivity.EXTRA_NOTE_INDEX, index)
-		activity.startActivityForResult(detail_note_intent, NoteDetailActivity.EDIT_NOTE_REQUEST)
+		Intent(activity, NoteDetailActivity::class.java).run {
+			putExtra(NoteDetailActivity.EXTRA_NOTE, notes[index] as Parcelable)
+			putExtra(NoteDetailActivity.EXTRA_NOTE_INDEX, index)
+			activity.startActivityForResult(this, NoteDetailActivity.EDIT_NOTE_REQUEST)
+		}
 	}
 
 }

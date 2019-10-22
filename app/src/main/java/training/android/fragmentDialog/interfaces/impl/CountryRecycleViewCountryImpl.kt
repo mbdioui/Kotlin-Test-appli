@@ -5,28 +5,20 @@ import android.view.View
 import android.widget.Toast
 import training.android.fragmentDialog.interfaces.CountryRecycleViewListener
 
-class CountryRecycleViewCountryImpl(val context: Context) : CountryRecycleViewListener {
+class CountryRecycleViewCountryImpl(private val context: Context) : CountryRecycleViewListener {
 	override fun onCardViewClick(view: View) {
-		Toast.makeText(
-			context,
-			"hello thank you for typing on cardview item ${view.tag}",
-			Toast.LENGTH_SHORT
-		)
-			.show()
+		Toast(context).showText(context, "hello thank you for typing on cardview item ${view.tag}")
 	}
 
 	override fun onIconClick(view: View) {
-		Toast.makeText(context, "hello thank you for typing on Icon item", Toast.LENGTH_SHORT)
-			.show()
+		Toast(context).showText(context, "thank you for cliking on icon")
 	}
 
 	override fun onLongClick(view: View) {
-		Toast.makeText(context, "hello thank you for typing long click on card", Toast.LENGTH_SHORT)
-			.show()
+		Toast(context).showText(context, "hello thank you for typing long click on card")
 	}
 
 	override fun onTextClick(view: View) {
-		Toast.makeText(context, "hello thank you for typing on text item", Toast.LENGTH_SHORT)
-			.show()
+		Toast(context).showText(context, "hello thank you for typing on text item")
 	}
 }

@@ -1,8 +1,6 @@
 package training.android.fragmentDialog.adapter
 
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
@@ -21,7 +19,10 @@ class CountryAdapter(val countries: Array<String>) :
 		val cardview = itemView.findViewById(R.id.countrycard) as CardView
 	}
 
-	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CountryHolder {
+	override fun onCreateViewHolder(
+		parent: ViewGroup,
+		viewType: Int
+	): CountryHolder {
 		val inflater = LayoutInflater.from(parent.context)
 		val view = inflater.inflate(R.layout.country_item, parent, false)
 		return CountryHolder(view)
@@ -31,18 +32,26 @@ class CountryAdapter(val countries: Array<String>) :
 		return countries.size
 	}
 
-	override fun onBindViewHolder(holder: CountryHolder, position: Int) {
-		holder.icon.setImageResource(R.drawable.ic_launcher_foreground)
-		holder.name.setText(countries[position])
-		holder.cardview.tag = position
-		holder.cardview.setOnClickListener { view -> countryItemListenerCountry?.onCardViewClick(view) }
-		holder.icon.setOnClickListener { view -> countryItemListenerCountry?.onIconClick(view) }
-		holder.name.setOnClickListener { view -> countryItemListenerCountry?.onTextClick(view) }
-		holder.cardview.setOnLongClickListener { view ->
-			countryItemListenerCountry?.onLongClick(view)
-			true
+	override fun onBindViewHolder(
+		holder: CountryHolder,
+		position: Int
+	) {
+		holder.apply {
+			icon.setImageResource(R.drawable.ic_launcher_foreground)
+			name.setText(countries[position])
+			cardview.tag = position
+			cardview.setOnClickListener { view ->
+				countryItemListenerCountry?.onCardViewClick(
+					view
+				)
+			}
+			icon.setOnClickListener { view -> countryItemListenerCountry?.onIconClick(view) }
+			name.setOnClickListener { view -> countryItemListenerCountry?.onTextClick(view) }
+			cardview.setOnLongClickListener { view ->
+				countryItemListenerCountry?.onLongClick(view)
+				true
+			}
 		}
 	}
-
 
 }

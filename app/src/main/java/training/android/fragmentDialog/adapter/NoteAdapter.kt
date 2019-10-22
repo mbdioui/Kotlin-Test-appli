@@ -39,9 +39,11 @@ class NoteAdapter(
 		holder: NoteHolder,
 		position: Int
 	) {
-		holder.title.text = notes[position].title
-		holder.excerpt.text = notes[position].note_text
-		holder.noteCard.tag = position
-		holder.noteCard.setOnClickListener(itemClickListener)
+		holder.apply {
+			title.text = notes[position].title
+			excerpt.text = notes[position].note_text
+			noteCard.tag = position
+			noteCard.setOnClickListener(itemClickListener)
+		}
 	}
 }

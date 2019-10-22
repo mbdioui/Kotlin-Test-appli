@@ -16,8 +16,8 @@ fun persistNote(
 	if (TextUtils.isEmpty(note.filename)) {
 		note.filename = UUID.randomUUID().toString() + ".note"
 	}
-	val fileoutput = context.openFileOutput(note.filename, Context.MODE_PRIVATE)
-	val outputStream = ObjectOutputStream(fileoutput)
+	val fileOutPut = context.openFileOutput(note.filename, Context.MODE_PRIVATE)
+	val outputStream = ObjectOutputStream(fileOutPut)
 	outputStream.writeObject(note)
 	outputStream.close()
 }

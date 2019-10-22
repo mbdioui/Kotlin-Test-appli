@@ -11,7 +11,7 @@ import training.android.fragmentDialog.R
 import training.android.fragmentDialog.Settings
 
 open class CommonActivity : AppCompatActivity() {
-	var sharedpreference: Settings? = null
+	lateinit var sharedpreference: Settings
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		sharedpreference = Settings(this)
@@ -23,8 +23,10 @@ open class CommonActivity : AppCompatActivity() {
 
 	protected fun restartActivity() {
 		this.finish()
-		val i = Intent(this, this::class.java)
-		startActivity(i)
+		run {
+			var i = Intent(this, this::class.java)
+			startActivity(i)
+		}
 	}
 
 	override fun onCreateOptionsMenu(menu: Menu?): Boolean {

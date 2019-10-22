@@ -1,8 +1,6 @@
 package training.android.fragmentDialog.fragments
 
-import android.app.AlertDialog
-import android.app.Dialog
-import android.app.DialogFragment
+import android.app.*
 import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
@@ -29,24 +27,14 @@ public class ListDialog : DialogFragment() {
 			.setView(inflater.inflate(R.layout.default_list_layout, null))
 			.setTitle("Please confirm your response")
 			.setMessage("Do you confirm that you did understantd the topic")
-			.setPositiveButton("confirm", DialogInterface.OnClickListener { dialog, id ->
+			.setPositiveButton("confirm", DialogInterface.OnClickListener { _, _ ->
 				Log.i(TAG, "confirm success")
 				listDialogListener?.positiveResponse()
 			})
-			.setNegativeButton("Decline", DialogInterface.OnClickListener { dialog, id ->
+			.setNegativeButton("Decline", DialogInterface.OnClickListener { _, _ ->
 				Log.i(TAG, "decline success")
 				listDialogListener?.negativeReponse()
 			})
-		/*listDialogListener = object : DialogFragmentInterface {
-			override fun negativeReponse() {
-				Toast.makeText(activity, "dialogcustomlist decline ", Toast.LENGTH_SHORT)
-					.show()
-			}
-
-			override fun positiveResponse() {
-				Toast.makeText(activity, "dialogcustomlist success", Toast.LENGTH_SHORT).show()
-			}
-		}*/
 		return builder.create()
 	}
 }
